@@ -1,26 +1,17 @@
-import java.io.FileWriter;
 import java.io.*;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import java.util.Scanner;
 
 class VokabelSchreiber{
 
     public static Scanner sc = new Scanner(System.in);
-    public static FileWriter fw = null;
-    public static BufferedWriter bw = null;
-
+    public static BufferedWriter bw;
 
     //Liest die Daten von der Tastatur ein und gibt Sie weiter
     public static void main(String[] args) {
         System.out.println("Willkommen!\nBitte trage deine Karten in der Form Name, Frage, Antwort 1 und Antwort 2 ein. \nGibt es keine zweite Antwort, so lassen Sie das Feld frei."); 
         
         try {
-            fw = new FileWriter("Data.txt");
-            bw = new BufferedWriter(fw);
+            bw = new BufferedWriter(new FileWriter("Data.txt", true));
         } catch (Exception e) {
             System.out.println("ne, wir nichts");
         }
@@ -30,7 +21,7 @@ class VokabelSchreiber{
             System.out.println("---------------------------------------------------------------");
             System.out.println("Name?");
             String Name = sc.nextLine();
-            if(Name.isEmpty()){
+            if(!Name.isEmpty()){
                 Temp_String += Name;
                 Temp_String += "/";
             }
